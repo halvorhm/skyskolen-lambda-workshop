@@ -68,12 +68,12 @@ provider:
 Deploy på nytt! Nå burde ting funke!
 
 
-### Oppgave 3
+### Oppgave 5
 La oss se litt på triggers. Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 2. 
 Deretter skal vi se litt på eventer for å trigge funksjonen vår! https://www.serverless.com/framework/docs/providers/aws/events/s3/ 
 
-### Oppgave 3.1
+### Oppgave 5.1
 Lag en cron-trigger så lambdaen kjører hvert minutt. Test det!
 
-### Oppgave 3.2
+### Oppgave 5.2
 Lag en event som trigger når nye objekter blir lagt til å bøtta. Test it!
