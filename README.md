@@ -69,7 +69,8 @@ Deploy på nytt! Nå burde ting funke!
 
 
 ### Oppgave 5
-La oss se litt på triggers. Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 2. 
+Nå prøver vi oss på litt løsere oppgaver, hvor vi må sjekke dokumentasjonen til serverless og sjekke triggers. 
+Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 2. 
 Deretter skal vi se litt på eventer for å trigge funksjonen vår! https://www.serverless.com/framework/docs/providers/aws/events/s3/ 
 
 ### Oppgave 5.1
