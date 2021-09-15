@@ -38,7 +38,7 @@ Nå skal vi ta å sjekke ut UIen og se hvordan koden kjører!
 ### Oppgave 3
 For å få litt mer ut av dette enn en hello world tenkte jeg vi gjøre om funksjonen vår til noe som administrer litt med S3-bøtter. 
 
-Nå skal vi liste alle s3-bøttene våre fra lambdaen! Et grunnlag for å få til dette finner du [her for node](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-creating-buckets.html) og [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html).
+Nå skal vi liste alle s3-bøttene våre fra lambdaen! Et grunnlag for å få til dette finner du [her for node](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-creating-buckets.html) og [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets).
 
 Hvis du har lyst til å teste koden lokalt så kan vi "kjøre" en lambda-funksjon lokalt ved hjelp av en fin liten serverless-kommando. 
 Vi bruker da `serverless invoke local --stage dev --function hello`. 
@@ -69,11 +69,20 @@ Deploy på nytt! Nå burde ting funke!
 
 
 ### Oppgave 5
-La oss se litt på triggers. Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 2. 
-Deretter skal vi se litt på eventer for å trigge funksjonen vår! https://www.serverless.com/framework/docs/providers/aws/events/s3/ 
+Nå prøver vi oss på litt løsere oppgaver, hvor vi må sjekke dokumentasjonen til serverless og sjekke events/triggers. 
+
+Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 3.
+Du finner dokumentasjon på hvordan du gjør ting mot s3 i boto3 biblioteket hvis du bruker python, eller javascript-sdken hvis du er i js. For serverless kan du se lenken under til deres dokumentasjon.
+- https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_objects_v2
+- https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#listObjectsV2-property
+- https://www.serverless.com/framework/docs/providers/aws/events/s3/ 
 
 ### Oppgave 5.1
-Lag en cron-trigger så lambdaen kjører hvert minutt. Test det!
+Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 3.
+
 
 ### Oppgave 5.2
+Lag en cron-trigger så lambdaen kjører hvert minutt. Test det!
+
+### Oppgave 5.3
 Lag en event som trigger når nye objekter blir lagt til å bøtta. Test it!
