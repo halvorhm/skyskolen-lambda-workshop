@@ -29,6 +29,36 @@ Installer [serverless](https://www.serverless.com/framework/docs/getting-started
 
 🙌 Bra jobba! 🙌
 
+### Feilmelding på deploy? 
+
+```Environment: darwin, node 18.2.0, framework 3.14.0, plugin 6.2.1, SDK 4.3.2
+Docs:        docs.serverless.com
+Support:     forum.serverless.com
+Bugs:        github.com/serverless/serverless/issues
+
+Error:
+This command can only be run in a Serverless service directory. Make sure to reference a valid config file in the current working directory if you're using a custom config file
+```
+Løsning: pass på at du er inne i riktig mappe når du kjøerer `serverlss deploy --stage dev`
+
+```
+Deploying testingTasks to stage dev (eu-west-1)
+
+✖ Stack testingTasks-dev failed to deploy (0s)
+Environment: darwin, node 18.2.0, framework 3.14.0, plugin 6.2.1, SDK 4.3.2
+Credentials: Local, "default" profile
+Docs:        docs.serverless.com
+Support:     forum.serverless.com
+Bugs:        github.com/serverless/serverless/issues
+
+Error:
+The security token included in the request is invalid.
+```
+
+Løsning: Du har trolig feil `Access key` og `Access Secret`. Kjør `aws configure` om igjen og pass på å lime inn riktige verdier fra e-posten. Fortsatt trøbbel? Ta kontakt med en av kursholderne så de kan hjelpe deg å generere en ny key + secret.
+
+
+
 ### Oppgave 2
 Nå skal vi ta å sjekke ut UIen og se hvordan koden kjører!
 - Logg inn på https://console.aws.amazon.com/
