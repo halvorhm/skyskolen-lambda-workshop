@@ -72,7 +72,17 @@ Se bilder i losningsforslag2-mappen for bilder av hva du skal trykke på.
 ### Oppgave 3
 For å få litt mer ut av dette enn en hello world tenkte jeg vi gjøre om funksjonen vår til noe som administrer litt med S3-bøtter. 
 
-Nå skal vi liste alle s3-bøttene våre fra lambdaen! Et grunnlag for å få til dette finner du [her for node](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-creating-buckets.html) og [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets).
+En S3-bøtte brukes på Amazon Cloud Services til å holde data. 
+
+>>>_TODO_ 
+>>Trenger vi å lage en S3 bøtte først?
+>>
+
+Nå skal vi liste alle s3-bøttene som eksisterer i området vi jobber i på AWS gjennom lambda-funksjonen! Et grunnlag for å få til dette finner du [her for node](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-creating-buckets.html) og [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets).
+
+_OBS_ Hvis du endrer på funksjonsnavnet eller lager en ny funksjon må du vite at en Lambda-function må ta inn parameterne `(event, context)` eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men en lamda-funksjon må ta disse inn for å kjøre (i hvertfall i python).
+
+*Tester du koden din på nett nå i lambda vil den feile, og det er meningen. Det skal løses i neste oppgave, men vi kan kjøre lokalt nå*
 
 Hvis du har lyst til å teste koden lokalt så kan vi "kjøre" en lambda-funksjon lokalt ved hjelp av en fin liten serverless-kommando. 
 Vi bruker da `serverless invoke local --stage dev --function hello`. 
@@ -81,6 +91,12 @@ Vi bruker da `serverless invoke local --stage dev --function hello`.
 Se om du får lista opp alle bøttene! Når koden fungerer, kjør en ny `serverless deploy --stage dev` for å dytte koden din ut.
 
 Hvis du kjører denne i lambda vil du se at den feiler med et tilgangsproblem. Dette løser vi i oppgave 4!
+
+#### Troubleshooting oppgave 4
+Hvis du kjører python og prøver å kjøre lambdaen lokalt kan det hende du må installere boto3. 
+For å løse følgende feilmelding ```ModuleNotFoundError: No module named 'boto3'``` kjøre ```pip3 install boto3```
+
+Har du endret funksjonen din og får nå feilmeldingen: ``` TypeError: printBuckets() takes 0 positional arguments but 2 were given ```? Løsning: funksjonen din må ta inn parameterne `(event, context)` eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men en lamda-funksjon må ta disse inn for å kjøre.
 
 ### Oppgave 4. 
 Som nevnt har ikke lambda-funksjonen tilgang til å lese s3-bøttene. Dette kan vi fikse! Og akkurat nå mens vi tester er vi litt frekke og putter på litt ekstra tilganger.
