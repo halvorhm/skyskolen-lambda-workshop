@@ -6,11 +6,11 @@ Vi kommer også til å ta i bruk et rammeverk som heter serverless for å kjenne
 
 ### Prereqs
 Installer aws cli (MacOS: `brew install awscli`).
-Kjør kommandoen `aws configure`. Legg inn verdiene:
-- Access Key (fra epost)
-- Secret (fra epost)
-- Default region name: eu-west-1
-- Default output format: json
+Kjør kommandoen `aws configure`. Du får beskjed om å legge inn følgende verdier en etter en:
+- AWS Access Key ID [********************]:  `(fra epost)`
+- AWS Secret Access Key [********************]: `(fra epost)`
+- Default region name: `eu-west-1`
+- Default output format: `json`
 
 Hvis du ønsker å gjøre endringer på dette seinere så finner du filen under `~/.aws/credentials`.
 
@@ -18,9 +18,10 @@ Installer [serverless](https://www.serverless.com/framework/docs/getting-started
 
 ### Oppgave 1
 - Kjør kommandoen `serverless` i repoet. Dette burde initiere et nytt serverless prosjekt. 
-  Når den spør om type repo, velg `starter` Node eller Python, litt etter hva du foretrekker. Jeg gikk for AWS - Python - Starter.
-  Bruk ditt eget navn i navn på prosjektet.   
+  Du får nå valg om type repo du vil lage. Du kan bevege deg opp eller ned i CLIet ved hjelp av piltastene. Man velger ved å trykke enter. Velg `starter` Node eller Python, litt etter hva du foretrekker. Jeg gikk for AWS - Python - Starter.
+  Gi prosjektet et navn - det bør være noe annet enn det de andre velger, slik at du kan kjenne igjen prosjektet ditt i en liste med prosjekter senere. Tips for å huske prosjektnavnet: velg noe som inneholder navnet ditt.   
   Spør den om du vil lage en serverless konto kan du svare `nei`. 
+  Spør den om å logge inn på et dashboard kan du svare `nei`.
   Spør den om du vil deploye prosjektet ditt svarer du `nei`. 
 - I `serverless.yml` legg inn `region: eu-west-1` under `provider`.
 - Endre `handler.js` til å ha en personlig melding.
