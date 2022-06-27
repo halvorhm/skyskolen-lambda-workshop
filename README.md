@@ -66,6 +66,9 @@ Nå skal vi ta å sjekke ut UIen og se hvordan koden kjører!
 - Trykk på den oransje "TEST"-knappen. Får du opp et vindu som spør om _configure test event_ så bare skriv et navn, f.eks. "test" og trykk save.
 - BAM! Du har nå kjørt funksjonen din! Woop!
 
+#### Troubleshooting
+Se bilder i losningsforslag2-mappen for bilder av hva du skal trykke på.
+
 ### Oppgave 3
 For å få litt mer ut av dette enn en hello world tenkte jeg vi gjøre om funksjonen vår til noe som administrer litt med S3-bøtter. 
 
