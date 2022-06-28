@@ -127,6 +127,9 @@ Du finner dokumentasjon på hvordan du gjør ting mot s3 i boto3 biblioteket hvi
 - https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#listObjectsV2-property
 - https://www.serverless.com/framework/docs/providers/aws/events/s3/ 
 
+Alle metoder tilgjengelig på boto3 klienten: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#id205
+
+
 ### Oppgave 5.1
 Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 3.
 
@@ -134,5 +137,9 @@ Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp
 ### Oppgave 5.2
 Lag en cron-trigger så lambdaen kjører hvert minutt. Test det!
 
+Nyttig lenke: https://www.serverless.com/blog/cron-jobs-on-aws
 ### Oppgave 5.3
 Lag en event som trigger når nye objekter blir lagt til å bøtta. Test it!
+
+Nyttig lenke: 
+https://www.serverless.com/framework/docs/providers/aws/events/s3

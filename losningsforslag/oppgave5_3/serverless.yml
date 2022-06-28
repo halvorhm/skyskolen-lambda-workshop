@@ -1,0 +1,23 @@
+service: testingTasks
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: eu-west-1
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 's3:*'
+      Resource:
+        - 'arn:aws:s3:::*'
+
+functions:
+  triggerOnAddData:
+    handler: handler.triggerOnAddData
+    events: 
+      - s3: 'testing-trigger-on-add-data-bucket'
+  addData:
+    handler: handler.addData
+  
