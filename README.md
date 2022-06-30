@@ -17,7 +17,7 @@ Hvis du ønsker å gjøre endringer på dette seinere så finner du filen under 
 Installer [serverless](https://www.serverless.com/framework/docs/getting-started/).
 
 ### Oppgave 1
-- Kjør kommandoen `serverless` i repoet. Dette burde initiere et nytt serverless prosjekt. 
+- I terminalen din, naviger til repoet hvor denne READMEen kjører, eller en annen mappe du vil bruke for denne workshoppen. Kjør kommandoen `serverless` der. Dette burde initiere et nytt serverless prosjekt. 
   Du får nå valg om type repo du vil lage. Du kan bevege deg opp eller ned i CLIet ved hjelp av piltastene. Man velger ved å trykke enter. Velg `starter` Node eller Python, litt etter hva du foretrekker. Jeg gikk for AWS - Python - Starter.
   Gi prosjektet et navn - det bør være noe annet enn det de andre velger, slik at du kan kjenne igjen prosjektet ditt i en liste med prosjekter senere. Tips for å huske prosjektnavnet: velg noe som inneholder navnet ditt.   
   Spør den om du vil lage en serverless konto kan du svare `nei`. 
@@ -25,9 +25,11 @@ Installer [serverless](https://www.serverless.com/framework/docs/getting-started
   Spør den om du vil deploye prosjektet ditt svarer du `nei`. 
 - I `serverless.yml` legg inn `region: eu-west-1` under `provider`.
 - Endre `handler.js` til å ha en personlig melding.
-- Deploy ved hjelp av kommandoen `serverless deploy --stage dev`.
+- Deploy ved hjelp av kommandoen `serverless deploy`.
 
-🙌 Bra jobba! 🙌
+🙌 Bra jobba! 🙌 
+
+Du har nettopp skrevet laget en funksjon (det du finner i handler.py eller handler.js), laget et oppsett for å kunne håndtere og "deploye" filene dine opp i skyen (serverless.yml filen) og lastet filene dine opp i Lambda (serverless deploy kommandoen)! I neste oppgave skal vi se litt på hva vi egentlig har dytta opp dit.
 
 ### Feilmelding på deploy? 
 
@@ -39,8 +41,7 @@ Bugs:        github.com/serverless/serverless/issues
 Error:
 This command can only be run in a Serverless service directory. Make sure to reference a valid config file in the current working directory if you're using a custom config file
 ```
-Løsning: pass på at du er inne i riktig mappe når du kjøerer `serverlss deploy --stage dev`
-
+Løsning: pass på at du er inne i riktig mappe når du kjøerer `serverlss deploy`
 ```
 Deploying testingTasks to stage dev (eu-west-1)
 
@@ -62,27 +63,32 @@ Løsning: Du har trolig feil `Access key` og `Access Secret`. Kjør `aws configu
 ### Oppgave 2
 Nå skal vi ta å sjekke ut UIen og se hvordan koden kjører!
 - Logg inn på https://console.aws.amazon.com/
+  - Velg IAM user
+  - account-id er `bekk-skyskolen`
+  - brukernavn er bekk-eposten din
+  - passord ser du på tavla. 
 - I menyen i toppen søk etter og velg "lambda". Under "Functions" finn din funksjon!
 - Trykk på den oransje "TEST"-knappen. Får du opp et vindu som spør om _configure test event_ så bare skriv et navn, f.eks. "test" og trykk save.
 - BAM! Du har nå kjørt funksjonen din! Woop!
 
 #### Troubleshooting
+Oppe til høyre ved siden av brukernavnet ditt står det en "region". AWS har en tendens til å sende en til feil region. Vi henger i eu-west-1.
+
 Se bilder i losningsforslag2-mappen for bilder av hva du skal trykke på.
 
 ### Oppgave 3
 For å få litt mer ut av dette enn en hello world tenkte jeg vi gjøre om funksjonen vår til noe som administrer litt med S3-bøtter. 
 
-En S3-bøtte brukes på Amazon Cloud Services til å holde data. 
+En S3-bøtte brukes på Amazon Cloud Services til å holde data. Tenk på det som en litt fancy delt disk.  
 
->>>_TODO_ 
->>Trenger vi å lage en S3 bøtte først?
->>
+Vi lager oss en bøtte aller først. Bøtter er unike i verden og må ha et unikt navn, så bruk gjerne en kombinasjon av ditt eget navn e.l.
+`aws s3 mb s3://<mitt navn på min bøtte>`.
 
-Nå skal vi liste alle s3-bøttene som eksisterer i området vi jobber i på AWS gjennom lambda-funksjonen! Et grunnlag for å få til dette finner du [her for node](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-creating-buckets.html) og [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets).
+La os deretter skrive om funksjonen vår i handler.js/handler.py til å liste alle s3-bøttene som eksisterer i området vi jobber i på AWS! Et grunnlag for å få til dette finner du [her for node](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-creating-buckets.html) og [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets).
 
 _OBS_ Hvis du endrer på funksjonsnavnet eller lager en ny funksjon må du vite at en Lambda-function må ta inn parameterne `(event, context)` eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men en lamda-funksjon må ta disse inn for å kjøre (i hvertfall i python).
 
-*Tester du koden din på nett nå i lambda vil den feile, og det er meningen. Det skal løses i neste oppgave, men vi kan kjøre lokalt nå*
+*Tester du koden din på nett nå i lambda vil den feile, og det er meningen. Det skal løses i neste oppgave, men vi kan kjøre lokalt nå først.*
 
 Hvis du har lyst til å teste koden lokalt så kan vi "kjøre" en lambda-funksjon lokalt ved hjelp av en fin liten serverless-kommando. 
 Vi bruker da `serverless invoke local --stage dev --function hello`. 
@@ -121,6 +127,8 @@ Deploy på nytt! Nå burde ting funke!
 ### Oppgave 5
 Nå prøver vi oss på litt løsere oppgaver, hvor vi må sjekke dokumentasjonen til serverless og sjekke events/triggers. 
 
+Start med å laste opp noe i bøtta di. Kanskje et bilde eller et word-dokument, bare ikke velg noe sensitivt.
+
 Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 3.
 Du finner dokumentasjon på hvordan du gjør ting mot s3 i boto3 biblioteket hvis du bruker python, eller javascript-sdken hvis du er i js. For serverless kan du se lenken under til deres dokumentasjon.
 - https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_objects_v2
@@ -131,8 +139,7 @@ Alle metoder tilgjengelig på boto3 klienten: https://boto3.amazonaws.com/v1/doc
 
 
 ### Oppgave 5.1
-Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 3.
-
+Først, list innholdet i bøtten din! Bruk det vi gjorde i oppgave 3 som utgangspunkt og modifiser funksjonen din ved hjelp av dokumentasjonen over. 
 
 ### Oppgave 5.2
 Lag en cron-trigger så lambdaen kjører hvert minutt. Test det!
