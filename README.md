@@ -1,6 +1,6 @@
 # AWS-workshop
 
-## Lambda!
+### Lambda!
 Her skal vi leke oss litt med lambda, et ypperlig Function As A Service (FaaS) miljø vi kan bruke til å kjøre koden vår.
 Vi kommer også til å ta i bruk et rammeverk som heter serverless for å kjenne litt på deploy og håndtering av prosjektet vårt.
 
@@ -16,7 +16,7 @@ Hvis du ønsker å gjøre endringer på dette seinere så finner du filen under 
 
 Installer [serverless](https://www.serverless.com/framework/docs/getting-started/).
 
-### Oppgave 1
+## Oppgave 1
 - I terminalen din, naviger til repoet hvor denne READMEen kjører, eller en annen mappe du vil bruke for denne workshoppen. Kjør kommandoen `serverless` der. Dette burde initiere et nytt serverless prosjekt. 
   Du får nå valg om type repo du vil lage. Du kan bevege deg opp eller ned i CLIet ved hjelp av piltastene. Man velger ved å trykke enter. Velg `starter` Node eller Python, litt etter hva du foretrekker. Jeg gikk for AWS - Python - Starter.
   Gi prosjektet et navn - det bør være noe annet enn det de andre velger, slik at du kan kjenne igjen prosjektet ditt i en liste med prosjekter senere. Tips for å huske prosjektnavnet: velg noe som inneholder navnet ditt.   
@@ -31,7 +31,10 @@ Installer [serverless](https://www.serverless.com/framework/docs/getting-started
 
 Du har nettopp skrevet laget en funksjon (det du finner i handler.py eller handler.js), laget et oppsett for å kunne håndtere og "deploye" filene dine opp i skyen (serverless.yml filen) og lastet filene dine opp i Lambda (serverless deploy kommandoen)! I neste oppgave skal vi se litt på hva vi egentlig har dytta opp dit.
 
-### Feilmelding på deploy? 
+<details>
+<summary> <h3>🚨 Feilmelding på deploy? 🚨</h3></summary>
+
+#### `Error: This command can only be run in a Serverless service directory.`
 
 ```Environment: darwin, node 18.2.0, framework 3.14.0, plugin 6.2.1, SDK 4.3.2
 Docs:        docs.serverless.com
@@ -41,7 +44,10 @@ Bugs:        github.com/serverless/serverless/issues
 Error:
 This command can only be run in a Serverless service directory. Make sure to reference a valid config file in the current working directory if you're using a custom config file
 ```
-Løsning: pass på at du er inne i riktig mappe når du kjøerer `serverlss deploy`
+💡 Løsning: pass på at du er inne i riktig mappe når du kjøerer `serverlss deploy`
+<br>
+<br>
+#### `Error: The security token included in the request is invalid.`
 ```
 Deploying testingTasks to stage dev (eu-west-1)
 
@@ -56,11 +62,12 @@ Error:
 The security token included in the request is invalid.
 ```
 
-Løsning: Du har trolig feil `Access key` og `Access Secret`. Kjør `aws configure` om igjen og pass på å lime inn riktige verdier fra e-posten. Fortsatt trøbbel? Ta kontakt med en av kursholderne så de kan hjelpe deg å generere en ny key + secret.
+💡 Løsning: Du har trolig feil `Access key` og `Access Secret`. Kjør `aws configure` om igjen og pass på å lime inn riktige verdier fra e-posten. Fortsatt trøbbel? Ta kontakt med en av kursholderne så de kan hjelpe deg å generere en ny key + secret.
+
+</details>
 
 
-
-### Oppgave 2
+## Oppgave 2
 Nå skal vi ta å sjekke ut UIen og se hvordan koden kjører!
 - Logg inn på https://console.aws.amazon.com/
   - Velg IAM user
@@ -69,14 +76,17 @@ Nå skal vi ta å sjekke ut UIen og se hvordan koden kjører!
   - passord ser du på tavla. 
 - I menyen i toppen søk etter og velg "lambda". Under "Functions" finn din funksjon!
 - Trykk på den oransje "TEST"-knappen. Får du opp et vindu som spør om _configure test event_ så bare skriv et navn, f.eks. "test" og trykk save.
-- BAM! Du har nå kjørt funksjonen din! Woop!
+- 💥 BAM! Du har nå kjørt funksjonen din! Woop! 🥳🎉
 
-#### Troubleshooting
-Oppe til høyre ved siden av brukernavnet ditt står det en "region". AWS har en tendens til å sende en til feil region. Vi henger i eu-west-1.
+<details>
+<summary> <h3>🚨 Troubleshooting 🚨</h3></summary>
+💡 Oppe til høyre ved siden av brukernavnet ditt står det en "region". AWS har en tendens til å sende en til feil region. Vi henger i eu-west-1. 
 
-Se bilder i losningsforslag2-mappen for bilder av hva du skal trykke på.
+Se [bildene i losningsforslag2-mappen](https://github.com/halvorhm/skyskolen-lambda-workshop/tree/main/losningsforslag/oppgave2) for hvor du skal trykke.
+</details>
 
-### Oppgave 3
+
+## Oppgave 3
 For å få litt mer ut av dette enn en hello world tenkte jeg vi gjøre om funksjonen vår til noe som administrer litt med S3-bøtter. 
 
 En S3-bøtte brukes på Amazon Cloud Services til å holde data. Tenk på det som en litt fancy delt disk.  
@@ -98,13 +108,18 @@ Se om du får lista opp alle bøttene! Når koden fungerer, kjør en ny `serverl
 
 Hvis du kjører denne i lambda vil du se at den feiler med et tilgangsproblem. Dette løser vi i oppgave 4!
 
-#### Troubleshooting oppgave 4
-Hvis du kjører python og prøver å kjøre lambdaen lokalt kan det hende du må installere boto3. 
-For å løse følgende feilmelding ```ModuleNotFoundError: No module named 'boto3'``` kjøre ```pip3 install boto3```
+<details>
+<summary> <h3>🚨 Troubleshooting 🚨</h3></summary>
 
-Har du endret funksjonen din og får nå feilmeldingen: ``` TypeError: printBuckets() takes 0 positional arguments but 2 were given ```? Løsning: funksjonen din må ta inn parameterne `(event, context)` eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men en lamda-funksjon må ta disse inn for å kjøre.
+💡 Hvis du kjører python og prøver å kjøre lambdaen lokalt kan det hende du må installere boto3. 
+For å løse følgende feilmelding ``` ModuleNotFoundError: No module named 'boto3' ```  kjør ``` pip3 install boto3 ``` i terminalen.
 
-### Oppgave 4. 
+<br>
+
+💡 Har du endret funksjonen din og får nå feilmeldingen: ``` TypeError: printBuckets() takes 0 positional arguments but 2 were given ```? Løsning: funksjonen din må ta inn parameterne `(event, context)` eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men en lamda-funksjon må ta disse inn for å kjøre.
+</details>
+
+## Oppgave 4. 
 Som nevnt har ikke lambda-funksjonen tilgang til å lese s3-bøttene. Dette kan vi fikse! Og akkurat nå mens vi tester er vi litt frekke og putter på litt ekstra tilganger.
 Legg inn biten `iamRoleStatements` i din `serverless.yml` fil som vist under. Dette gir lambdaen tilgang tilå gjøre _alle_ s3-kommandoer mot _alle_ s3-bøtter.  
 
@@ -124,7 +139,7 @@ provider:
 Deploy på nytt! Nå burde ting funke!
 
 
-### Oppgave 5
+## Oppgave 5
 Nå prøver vi oss på litt løsere oppgaver, hvor vi må sjekke dokumentasjonen til serverless og sjekke events/triggers. 
 
 Start med å laste opp noe i bøtta di. Kanskje et bilde eller et word-dokument, bare ikke velg noe sensitivt.
