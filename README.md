@@ -87,9 +87,9 @@ Se [bildene i losningsforslag2-mappen](https://github.com/halvorhm/skyskolen-lam
 
 
 ## Oppgave 3
-For å få litt mer ut av dette enn en hello world tenkte jeg vi gjøre om funksjonen vår til noe som administrer litt med S3-bøtter. 
+For å få litt mer ut av dette enn en hello world skal vi gjøre om funksjonen vår til noe som administrerer litt med S3-bøtter. 
 
-En S3-bøtte brukes på Amazon Cloud Services til å holde data. Tenk på det som en litt fancy delt disk.  
+S3 står for Simple Storage Service og brukes til å holde data. Tenk på det som en litt fancy delt disk. 
 
 Vi lager oss en bøtte aller først. Bøtter er unike i verden og må ha et unikt navn, så bruk gjerne en kombinasjon av ditt eget navn e.l.
 `aws s3 mb s3://<mitt navn på min bøtte>`.
