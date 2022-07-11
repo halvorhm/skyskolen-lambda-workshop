@@ -6,7 +6,7 @@ Vi kommer også til å ta i bruk et rammeverk som heter serverless for å kjenne
 
 ### Prereqs
 Installer aws cli (MacOS: `brew install awscli`).
-Kjør kommandoen `aws configure`. Du får beskjed om å legge inn følgende verdier en etter en:
+Kjør kommandoen `aws configure`. Du får beskjed om å legge inn følgende verdier én etter én:
 - AWS Access Key ID [********************]:  `(fra epost)`
 - AWS Secret Access Key [********************]: `(fra epost)`
 - Default region name: `eu-west-1`
@@ -29,7 +29,7 @@ Installer [serverless](https://www.serverless.com/framework/docs/getting-started
 
 🙌 Bra jobba! 🙌 
 
-Du har nettopp skrevet laget en funksjon (det du finner i handler.py eller handler.js), laget et oppsett for å kunne håndtere og "deploye" filene dine opp i skyen (serverless.yml filen) og lastet filene dine opp i Lambda (serverless deploy kommandoen)! I neste oppgave skal vi se litt på hva vi egentlig har dytta opp dit.
+Du har nettopp laget en funksjon (det du finner i handler.py eller handler.js), laget et oppsett for å kunne håndtere og deploye filene dine opp i skyen (serverless.yml filen) og lastet filene dine opp i Lambda (serverless deploy kommandoen)! I neste oppgave skal vi se litt på hva vi egentlig har dytta opp dit.
 
 <details>
 <summary> <h3>🚨 Feilmelding på deploy? 🚨</h3></summary>
