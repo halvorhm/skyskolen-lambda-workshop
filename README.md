@@ -102,7 +102,7 @@ _OBS_ Hvis du endrer på funksjonsnavnet eller lager en ny funksjon må du vite 
 
 Hvis du har lyst til å teste koden lokalt så kan vi "kjøre" en lambda-funksjon lokalt ved hjelp av en fin liten serverless-kommando. 
 Vi bruker da `serverless invoke local --stage dev --function hello`. 
-`stage` må her være det samme som du har brukt ellers og `function` viser til det funksjonen din er deklarert som under `functions`i serverless.yml.
+`stage` viser til hvilket miljø vi ønsker å gjøre dette i. `function` viser til det funksjonen din er deklarert som under `functions`i serverless.yml. Når man utvikler er det vanlig å ha utviklingsmiljø og produksjonsmiljø, under workshopen bruker vi `dev` som står for development. 
 
 Se om du får lista opp alle bøttene! Når koden fungerer, kjør en ny `serverless deploy --stage dev` for å dytte koden din ut.
 
