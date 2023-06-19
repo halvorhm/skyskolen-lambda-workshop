@@ -89,7 +89,7 @@ Nå skal vi ta å sjekke ut UIen og se hvordan koden kjører!
 
 <details>
   <summary>Hvor kan jeg se outputen fra lambdaen min?</summary>
-<details>
+</details>
 
 <details>
 <summary> <h3>🚨 Troubleshooting 🚨</h3></summary>
