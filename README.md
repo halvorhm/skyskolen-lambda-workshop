@@ -6,7 +6,7 @@ Vi kommer også til å ta i bruk et rammeverk som heter serverless. Dette rammev
 
 <details>
   <summary>Hva var lambda igjen? 🤔</summary>
-  En lambda er, generelt forklart, en kodesnutt som kjøres enten ved et bestemt tidspunkt eller ved at en bestemt hendelse trigger funksjonen. For eksempel så kan man ønske at en ny jobbsøknad i databasen skal trigge en epostutsendelse til søker. 
+  En lambda er, generelt forklart, en kodesnutt eller funksjon som kjøres enten ved et bestemt tidspunkt eller ved at en bestemt hendelse trigger funksjonen. For eksempel så kan man ønske at en ny jobbsøknad i databasen skal trigge en epostutsendelse til søker. En fordel med Lambda er at man kun betaler for ressursene man bruker under kjøring, og ingenting ellers. Lambda er en Function as a Service, noe som betyr at man ikke trenger å sette opp noe konfigurere noe underliggende infrastruktur.
 </details>
 
 ### Prereqs
@@ -125,7 +125,7 @@ Se om du får lista opp alle bøttene!
 
 4. Når koden fungerer, kjør en ny `serverless deploy --stage dev` for å dytte koden din ut.
 
-Hvis du kjører denne i lambda (på nett) vil du se at den feiler med et tilgangsproblem. Dette løser vi i oppgave 4!
+Hvis du kjører denne i lambdaen vil du se at den feiler med et tilgangsproblem. Dette løser vi i oppgave 4!
 
 <details>
 <summary> <h3>🚨 Troubleshooting 🚨</h3></summary>
@@ -171,7 +171,7 @@ Nå prøver vi oss på litt løsere oppgaver, hvor vi må sjekke dokumentasjonen
 Start med å laste opp noe i bøtta di. Kanskje et bilde eller et word-dokument, bare ikke velg noe sensitivt.
 
 Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 3.
-Du finner dokumentasjon på hvordan du gjør ting mot s3 i boto3 biblioteket hvis du bruker python, eller javascript-sdken hvis du er i js. For serverless kan du se lenken under til deres dokumentasjon.
+Du finner dokumentasjon på hvordan du gjør ting mot s3 i boto3 biblioteket hvis du bruker python. For serverless kan du se lenken under til deres dokumentasjon.
 - https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_objects_v2
 - https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#listObjectsV2-property
 - https://www.serverless.com/framework/docs/providers/aws/events/s3/ 
@@ -186,6 +186,7 @@ Først, list innholdet i bøtten din! Bruk det vi gjorde i oppgave 3 som utgangs
 Lag en cron-trigger så lambdaen kjører hvert minutt. Test det!
 
 Nyttig lenke: https://www.serverless.com/blog/cron-jobs-on-aws
+
 ### Oppgave 5.3
 Lag en event som trigger når nye objekter blir lagt til å bøtta. Test it!
 
