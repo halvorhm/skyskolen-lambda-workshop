@@ -100,26 +100,32 @@ Se [bildene i losningsforslag2-mappen](https://github.com/halvorhm/skyskolen-lam
 
 
 ## Oppgave 3
-For å få litt mer ut av dette enn en hello world skal vi gjøre om funksjonen vår til noe som administrerer litt med S3-bøtter. 
+I denne oppgaven skal vi bli kjent med S3-bøtter! 
 
-S3 står for Simple Storage Service og brukes til å holde data. Tenk på det som en litt fancy delt disk - slik som Google Drive eller Dropbox. 
+<details>
+  <summary>Hva er en S3-bøtte? 🤔</summary>
+  S3 står for Simple Storage Service og brukes til å holde data. Tenk på det som en litt fancy delt disk - slik som Google Drive eller Dropbox.
+</details>
 
-Vi lager oss en bøtte aller først. Bøtter er unike i verden og må ha et unikt navn, så bruk gjerne en kombinasjon av ditt eget navn e.l.
-`aws s3 mb s3://<mitt navn på min bøtte>`.
+1. Først skal vi opprette en bøtte. Bøtter er unike i verden og må ha et helt unikt navn. Brukt derfor en kombinasjon av navnet ditt e.l.
+For å opprette en bøtte bruker du kommandoen `aws s3 mb s3://<mitt navn på min bøtte>`.
 
-La oss deretter skrive om funksjonen vår i handler.js/handler.py til å liste alle s3-bøttene som eksisterer i området vi jobber i på AWS! Et grunnlag for å få til dette finner du [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets).
+2. La oss deretter skrive om funksjonen vår i handler.js/handler.py til å liste alle s3-bøttene som eksisterer i regionen vi jobber i på AWS! Et grunnlag for å få til dette finner du [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets). 
 
 _OBS_ Hvis du endrer på funksjonsnavnet eller lager en ny funksjon må du vite at en Lambda-function må ta inn parameterne `(event, context)` eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men en lamda-funksjon må ta disse inn for å kjøre (i hvertfall i python).
 
-*Tester du koden din på nett nå i lambda vil den feile, og det er meningen. Det skal løses i neste oppgave, men vi kan kjøre lokalt nå først.*
+*Dersom du allerede deployer koden din og tester lambdaen på nett så feiler den - det er meningen. Det skal løses i neste oppgave, men vi skal kjøre lokalt nå først.*
 
-Hvis du har lyst til å teste koden lokalt så kan vi "kjøre" en lambda-funksjon lokalt ved hjelp av en fin liten serverless-kommando. 
+3. For å teste koden så kan vi "kjøre" en lambda-funksjon lokalt ved hjelp av en fin liten serverless-kommando. 
 Vi bruker da `serverless invoke local --stage dev --function hello`. 
-`stage` viser til hvilket miljø vi ønsker å gjøre dette i. `function` viser til det funksjonen din er deklarert som under `functions`i serverless.yml. Når man utvikler er det vanlig å ha utviklingsmiljø og produksjonsmiljø, under workshopen bruker vi `dev` som står for development. 
+`stage` viser til hvilket miljø vi ønsker å gjøre dette i. `function` viser til det funksjonen din er deklarert som under `functions`i serverless.yml. 
+Når man utvikler er det vanlig å ha utviklingsmiljø og produksjonsmiljø, under workshopen bruker vi `dev` som står for development. 
 
-Se om du får lista opp alle bøttene! Når koden fungerer, kjør en ny `serverless deploy --stage dev` for å dytte koden din ut.
+Se om du får lista opp alle bøttene! 
 
-Hvis du kjører denne i lambda vil du se at den feiler med et tilgangsproblem. Dette løser vi i oppgave 4!
+4. Når koden fungerer, kjør en ny `serverless deploy --stage dev` for å dytte koden din ut.
+
+Hvis du kjører denne i lambda (på nett) vil du se at den feiler med et tilgangsproblem. Dette løser vi i oppgave 4!
 
 <details>
 <summary> <h3>🚨 Troubleshooting 🚨</h3></summary>
@@ -133,8 +139,10 @@ For å løse følgende feilmelding ``` ModuleNotFoundError: No module named 'bot
 </details>
 
 ## Oppgave 4. 
-Som nevnt har ikke lambda-funksjonen tilgang til å lese s3-bøttene. Dette kan vi fikse! Og akkurat nå mens vi tester er vi litt frekke og putter på litt ekstra tilganger.
-Legg inn biten `iamRoleStatements` i din `serverless.yml` fil som vist under. Dette gir lambdaen tilgang tilå gjøre _alle_ s3-kommandoer mot _alle_ s3-bøtter.  
+Som nevnt har ikke lambda-funksjonen tilgang til å lese s3-bøttene. 
+Dette kan vi fikse! Og akkurat nå mens vi tester er vi litt frekke og putter på litt ekstra tilganger.
+
+Legg inn biten `iamRoleStatements` i `serverless.yml` fil som vist under. Dette gir lambdaen tilgang tilå gjøre _alle_ s3-kommandoer mot _alle_ s3-bøtter.  
 
 ```yaml
 provider:
@@ -150,6 +158,11 @@ provider:
         - 'arn:aws:s3:::*'
 ```
 Deploy på nytt! Nå burde ting funke!
+
+<details>
+  <summary>Hvordan deployer jeg?</summary>
+  Kjør kommandoen `serverless deploy --stage dev` 
+ <details>
 
 
 ## Oppgave 5
