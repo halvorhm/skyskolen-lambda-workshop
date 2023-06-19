@@ -162,7 +162,7 @@ Deploy på nytt! Nå burde ting funke!
 <details>
   <summary>Hvordan deployer jeg?</summary>
   Kjør kommandoen `serverless deploy --stage dev` 
- <details>
+ </details>
 
 
 ## Oppgave 5
