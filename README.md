@@ -2,34 +2,42 @@
 
 ### Lambda!
 Her skal vi leke oss litt med lambda, et ypperlig Function As A Service (FaaS) miljø vi kan bruke til å kjøre koden vår.
-Vi kommer også til å ta i bruk et rammeverk som heter serverless for å kjenne litt på deploy og håndtering av prosjektet vårt.
+Vi kommer også til å ta i bruk et rammeverk som heter serverless. Dette rammeverket skal hjelpe poss med å deploye og håndtere av prosjektet og koden vår.
+
+<details>
+  <summary>Hva var lambda igjen? 🤔</summary>
+  En lambda er, generelt forklart, en kodesnutt som kjøres enten ved et bestemt tidspunkt eller ved at en bestemt hendelse trigger funksjonen. For eksempel så kan man ønske at en ny jobbsøknad i databasen skal trigge en epostutsendelse til søker. 
+</details>
 
 ### Prereqs
-Installer aws cli (MacOS: `brew install awscli`).
-Kjør kommandoen `aws configure`. Du får beskjed om å legge inn følgende verdier én etter én:
+1. Installer aws cli (MacOS: `brew install awscli`).
+2. Kjør kommandoen `aws configure`. 
+
+3. Du får beskjed om å legge inn følgende verdier én etter én:
 - AWS Access Key ID [********************]:  `(fra epost)`
 - AWS Secret Access Key [********************]: `(fra epost)`
 - Default region name: `eu-west-1`
 - Default output format: `json`
 
-Hvis du ønsker å gjøre endringer på dette seinere så finner du filen under `~/.aws/credentials`.
+Hvis du ønsker å gjøre endringer på dette senere så finner du filen under `~/.aws/credentials`.
 
-Installer [serverless](https://www.serverless.com/framework/docs/getting-started/).
+4. Installer [serverless](https://www.serverless.com/framework/docs/getting-started/).
 
 ## Oppgave 1
-- I terminalen din, naviger til repoet hvor denne READMEen kjører, eller en annen mappe du vil bruke for denne workshoppen. Kjør kommandoen `serverless` der. Dette burde initiere et nytt serverless prosjekt. 
-  Du får nå valg om type repo du vil lage. Du kan bevege deg opp eller ned i CLIet ved hjelp av piltastene. Man velger ved å trykke enter. Velg `starter` Node eller Python, litt etter hva du foretrekker. Jeg gikk for AWS - Python - Starter.
-  Gi prosjektet et navn - det bør være noe annet enn det de andre velger, slik at du kan kjenne igjen prosjektet ditt i en liste med prosjekter senere. Tips for å huske prosjektnavnet: velg noe som inneholder navnet ditt.   
+1. I terminalen din, naviger til repoet hvor denne READMEen kjører (hvis du har klonet repoet), eller en annen mappe du vil bruke for denne workshoppen. 
+2. Kjør kommandoen `serverless` der. Dette initierer et nytt serverless prosjekt. 
+- Du får nå valg om type repo du vil lage. Du kan bevege deg opp eller ned i CLIet ved hjelp av piltastene. Man velger ved å trykke enter. Velg `starter` Python, . Jeg gikk for AWS - Python - Starter.
+- Gi prosjektet et navn - velg noe unikt som inneholder navnet ditt. Hvis ikke kan det bli vanskelig å finne det igjen blandt alle andre sine.   
   Spør den om du vil lage en serverless konto kan du svare `nei`. 
   Spør den om å logge inn på et dashboard kan du svare `nei`.
   Spør den om du vil deploye prosjektet ditt svarer du `nei`. 
-- I `serverless.yml` legg inn `region: eu-west-1` under `provider`.
-- Endre `handler.js` til å ha en personlig melding.
-- Deploy ved hjelp av kommandoen `serverless deploy`.
+3. I `serverless.yml` legg inn `region: eu-west-1` under `provider`.
+4. Endre `handler.js` til å ha en personlig melding.
+5. Deploy ved hjelp av kommandoen `serverless deploy`.
 
 🙌 Bra jobba! 🙌 
 
-Du har nettopp laget en funksjon (det du finner i handler.py eller handler.js), laget et oppsett for å kunne håndtere og deploye filene dine opp i skyen (serverless.yml filen) og lastet filene dine opp i Lambda (serverless deploy kommandoen)! I neste oppgave skal vi se litt på hva vi egentlig har dytta opp dit.
+Du har nettopp laget en funksjon (det du finner i handler.py), laget et oppsett for å kunne håndtere og deploye filene dine opp i skyen (serverless.yml filen) og lastet filene dine opp i Lambda (serverless deploy kommandoen)! I neste oppgave skal vi se litt på hva vi egentlig har dytta opp dit.
 
 <details>
 <summary> <h3>🚨 Feilmelding på deploy? 🚨</h3></summary>
@@ -62,21 +70,26 @@ Error:
 The security token included in the request is invalid.
 ```
 
-💡 Løsning: Du har trolig feil `Access key` og `Access Secret`. Kjør `aws configure` om igjen og pass på å lime inn riktige verdier fra e-posten. Fortsatt trøbbel? Ta kontakt med en av kursholderne så de kan hjelpe deg å generere en ny key + secret.
+💡 Løsning: Du har trolig feil `Access key` og `Access Secret`. Kjør `aws configure` om igjen og pass på å lime inn riktige verdier fra e-posten. 
+  Fortsatt trøbbel? Ta kontakt med en av kursholderne så de kan hjelpe deg å generere en ny key + secret.
 
 </details>
 
 
 ## Oppgave 2
 Nå skal vi ta å sjekke ut UIen og se hvordan koden kjører!
-- Logg inn på https://console.aws.amazon.com/
+1. Logg inn på https://console.aws.amazon.com/
   - Velg IAM user
   - account-id er `bekk-skyskolen`
   - brukernavn er bekk-eposten din
   - passord ser du på tavla. 
-- I menyen i toppen søk etter og velg "lambda". Under "Functions" finn din funksjon!
-- Trykk på den oransje "TEST"-knappen. Får du opp et vindu som spør om _configure test event_ så bare skriv et navn, f.eks. "test" og trykk save.
-- 💥 BAM! Du har nå kjørt funksjonen din! Woop! 🥳🎉
+2. I menyen i toppen søk etter og velg "lambda". Under "Functions" finn din funksjon!
+3. Trykk på den oransje "TEST"-knappen. Får du opp et vindu som spør om _configure test event_ så bare skriv et navn, f.eks. "test" og trykk save.
+4. 💥 BAM! Du har nå kjørt funksjonen din! Woop! 🥳🎉
+
+<details>
+  <summary>Hvor kan jeg se outputen fra lambdaen min?</summary>
+<details>
 
 <details>
 <summary> <h3>🚨 Troubleshooting 🚨</h3></summary>
@@ -89,12 +102,12 @@ Se [bildene i losningsforslag2-mappen](https://github.com/halvorhm/skyskolen-lam
 ## Oppgave 3
 For å få litt mer ut av dette enn en hello world skal vi gjøre om funksjonen vår til noe som administrerer litt med S3-bøtter. 
 
-S3 står for Simple Storage Service og brukes til å holde data. Tenk på det som en litt fancy delt disk. 
+S3 står for Simple Storage Service og brukes til å holde data. Tenk på det som en litt fancy delt disk - slik som Google Drive eller Dropbox. 
 
 Vi lager oss en bøtte aller først. Bøtter er unike i verden og må ha et unikt navn, så bruk gjerne en kombinasjon av ditt eget navn e.l.
 `aws s3 mb s3://<mitt navn på min bøtte>`.
 
-La os deretter skrive om funksjonen vår i handler.js/handler.py til å liste alle s3-bøttene som eksisterer i området vi jobber i på AWS! Et grunnlag for å få til dette finner du [her for node](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-creating-buckets.html) og [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets).
+La oss deretter skrive om funksjonen vår i handler.js/handler.py til å liste alle s3-bøttene som eksisterer i området vi jobber i på AWS! Et grunnlag for å få til dette finner du [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets).
 
 _OBS_ Hvis du endrer på funksjonsnavnet eller lager en ny funksjon må du vite at en Lambda-function må ta inn parameterne `(event, context)` eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men en lamda-funksjon må ta disse inn for å kjøre (i hvertfall i python).
 
