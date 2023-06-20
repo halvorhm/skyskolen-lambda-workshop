@@ -180,6 +180,15 @@ Du finner dokumentasjon på hvordan du gjør ting mot s3 i boto3 biblioteket hvi
 
 Alle metoder tilgjengelig på boto3 klienten: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#id205
 
+### Oppgave 5.0
+Start med å laste opp noe i bøtta di som du lagde i oppgave 3! Kanskje et bilde eller et word-dokument. Ikke velg noe sensitivt!
+
+Dette kan du gjøre ved hjelp av ClickOps eller ved hjelp av en kommando i terminalen. 
+
+Hva er ClickOps?
+
+Dersom du vil gjøre det i terminalen, så kan dette være en nyttig lenke: https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
+PS! Bla ned til avsnittet med tittelen "Example" 
 
 ### Oppgave 5.1
 Først, list innholdet i bøtten din! Bruk det vi gjorde i oppgave 3 som utgangspunkt og modifiser funksjonen din ved hjelp av dokumentasjonen over. 
