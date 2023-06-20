@@ -160,15 +160,17 @@ provider:
 Deploy på nytt! Nå burde ting funke!
 
 <details>
-  <summary>Hvordan deployer jeg?</summary>
-  Kjør kommandoen `serverless deploy --stage dev` 
- </details>
+<summary> Hvordan deployer man? </summary>
+
+Kjør kommandoen `serverless deploy --stage dev`
+
+</details>
 
 
 ## Oppgave 5
 Nå prøver vi oss på litt løsere oppgaver, hvor vi må sjekke dokumentasjonen til serverless og sjekke events/triggers. 
 
-Start med å laste opp noe i bøtta di. Kanskje et bilde eller et word-dokument, bare ikke velg noe sensitivt.
+Start med å laste opp noe i bøtta di. Kanskje et bilde eller et word-dokument. Ikke velg noe sensitivt!
 
 Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 3.
 Du finner dokumentasjon på hvordan du gjør ting mot s3 i boto3 biblioteket hvis du bruker python. For serverless kan du se lenken under til deres dokumentasjon.
