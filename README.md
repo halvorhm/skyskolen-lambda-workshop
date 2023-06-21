@@ -175,6 +175,11 @@ Alle metoder tilgjengelig på boto3 klienten: https://boto3.amazonaws.com/v1/doc
 For serverless kan du se lenken under til deres dokumentasjon.
 https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#listObjectsV2-property
 
+<details>
+  <summary> Hva er forskjellen på serverless og boto3 ?</summary>
+ Boto3 er et python-bibliotek og SDK (Software Development Kit). Ved å bruke boto3, så kan man interagere med forskjellige ressurser (f.eks. en lambda) i AWS gjennom kode.  Enkelt forklart er så er bruken til serverless å kunne deploye denne koden enkelt til AWS, og å abstrahere bort en del underliggende infrastruktur. De har noen overlappende bruksområder (for eksempel kan begge brukes til å opprette en s3-bøtte), men fokusområdene er forskjellige.
+</details>
+
 ### Oppgave 5.0
 Start med å laste opp noe i bøtta di som du lagde i oppgave 3! Kanskje et bilde eller et word-dokument. Ikke velg noe sensitivt!
 
