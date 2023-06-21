@@ -120,10 +120,9 @@ _OBS_ Hvis du endrer på funksjonsnavnet eller lager en ny funksjon må du vite 
 
 3. For å teste koden så kan vi "kjøre" en lambda-funksjon lokalt ved hjelp av en fin liten serverless-kommando. 
 Vi bruker da `serverless invoke local --stage dev --function hello`. 
-`stage` viser til hvilket miljø vi ønsker å gjøre dette i. `function` viser til det funksjonen din er deklarert som under `functions`i serverless.yml. 
-Når man utvikler er det vanlig å ha utviklingsmiljø og produksjonsmiljø, under workshopen bruker vi `dev` som står for development. 
+`stage` viser til hvilket miljø vi ønsker å gjøre dette i. Under utvikling er det vanlig å ha utviklingsmiljø og produksjonsmiljø. Under workshopen bruker vi `dev` som står for development. `function` viser til funksjonsnavnet ditt i serverless.yml (DOBBELTSJEKK DENNE). 
 
-Se om du får lista opp alle bøttene! 
+Får du lista ut alle bøttene? 
 
 4. Når koden fungerer, kjør en ny `serverless deploy --stage dev` for å dytte koden din ut.
 
