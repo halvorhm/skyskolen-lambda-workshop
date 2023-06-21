@@ -9,6 +9,8 @@ Vi kommer også til å ta i bruk et rammeverk som heter serverless. Dette rammev
   En lambda er, generelt forklart, en kodesnutt eller funksjon som kjøres enten ved et bestemt tidspunkt eller ved at en bestemt hendelse trigger funksjonen. For eksempel så kan man ønske at en ny jobbsøknad i databasen skal trigge en epostutsendelse til søker. En fordel med Lambda er at man kun betaler for ressursene man bruker under kjøring, og ingenting ellers. Lambda er en Function as a Service, noe som betyr at man ikke trenger å sette opp noe konfigurere noe underliggende infrastruktur.
 </details>
 
+Målet med workshopen er ikke å bli ferdig; det er å teste ut og bli litt kjent med sky! Ta det i ditt tempo og spør om hjelp om du trenger det.
+
 ### Prereqs
 1. Installer aws cli (MacOS: `brew install awscli`).
 2. Kjør kommandoen `aws configure`. 
@@ -170,36 +172,33 @@ Kjør kommandoen `serverless deploy --stage dev`
 ## Oppgave 5
 Nå prøver vi oss på litt løsere oppgaver, hvor vi må sjekke dokumentasjonen til serverless og sjekke events/triggers. 
 
-Start med å laste opp noe i bøtta di. Kanskje et bilde eller et word-dokument. Ikke velg noe sensitivt!
-
-Først kan vi endre koden vår til å liste innholdet i en gitt bøtte ved hjelp av lenkene i oppgave 3.
-Du finner dokumentasjon på hvordan du gjør ting mot s3 i boto3 biblioteket hvis du bruker python. For serverless kan du se lenken under til deres dokumentasjon.
-- https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_objects_v2
-- https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#listObjectsV2-property
-- https://www.serverless.com/framework/docs/providers/aws/events/s3/ 
-
+Du finner dokumentasjon på hvordan du gjør ting mot s3 i boto3 biblioteket hvis du bruker python. 
 Alle metoder tilgjengelig på boto3 klienten: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#id205
+
+For serverless kan du se lenken under til deres dokumentasjon.
+https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#listObjectsV2-property
 
 ### Oppgave 5.0
 Start med å laste opp noe i bøtta di som du lagde i oppgave 3! Kanskje et bilde eller et word-dokument. Ikke velg noe sensitivt!
 
 Dette kan du gjøre ved hjelp av ClickOps eller ved hjelp av en kommando i terminalen. 
 
-Hva er ClickOps?
-
 Dersom du vil gjøre det i terminalen, så kan dette være en nyttig lenke: https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
 PS! Bla ned til avsnittet med tittelen "Example" 
 
 ### Oppgave 5.1
-Først, list innholdet i bøtten din! Bruk det vi gjorde i oppgave 3 som utgangspunkt og modifiser funksjonen din ved hjelp av dokumentasjonen over. 
+List innholdet i bøtten din! Bruk det vi gjorde i oppgave 3 (og lenkene der) som utgangspunkt og modifiser funksjonen din ved hjelp av dokumentasjonen. 
+
+Nyttig lenke:
+https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_objects_v2
 
 ### Oppgave 5.2
-Lag en cron-trigger så lambdaen kjører hvert minutt. Test det!
-
-Nyttig lenke: https://www.serverless.com/blog/cron-jobs-on-aws
-
-### Oppgave 5.3
 Lag en event som trigger når nye objekter blir lagt til å bøtta. Test it!
 
 Nyttig lenke: 
 https://www.serverless.com/framework/docs/providers/aws/events/s3
+
+### Oppgave 5.3 
+Legg til noe om kron jobb??
+
+
