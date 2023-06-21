@@ -122,9 +122,7 @@ _OBS_ Hvis du endrer på funksjonsnavnet eller lager en ny funksjon må du vite 
 Vi bruker da `serverless invoke local --stage dev --function hello`. 
 `stage` viser til hvilket miljø vi ønsker å gjøre dette i. Under utvikling er det vanlig å ha utviklingsmiljø og produksjonsmiljø. Under workshopen bruker vi `dev` som står for development. `function` viser til funksjonsnavnet ditt i serverless.yml (DOBBELTSJEKK DENNE). 
 
-Får du lista ut alle bøttene? 
-
-4. Når koden fungerer, kjør en ny `serverless deploy --stage dev` for å dytte koden din ut.
+4. Når koden fungerer og du får lista ut alle bøttene, kjør en ny `serverless deploy --stage dev` for å dytte koden din ut.
 
 Hvis du kjører denne i lambdaen vil du se at den feiler med et tilgangsproblem. Dette løser vi i oppgave 4!
 
