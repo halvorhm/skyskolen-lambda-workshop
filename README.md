@@ -91,9 +91,9 @@ Nå skal vi ta å sjekke ut UIen og se hvordan koden kjører!
 
 <details>
 <summary> <h3>🚨 Troubleshooting 🚨</h3></summary>
-💡 Oppe til høyre ved siden av brukernavnet ditt står det en "region". AWS har en tendens til å sende en til feil region. Vi henger i eu-west-1. 
+💡 Oppe til høyre ved siden av brukernavnet ditt står det en "region". AWS har en tendens til å sende en til feil region. Vi henger i eu-west-1. <br /><br />
 
-Se [bildene i losningsforslag2-mappen](https://github.com/halvorhm/skyskolen-lambda-workshop/tree/main/losningsforslag/oppgave2) for hvor du skal trykke.
+Se [bildene i losningsforslag2-mappen](https://github.com/halvorhm/skyskolen-lambda-workshop/tree/main/losningsforslag/oppgave2) for hvor du skal trykke dersom stegene over ikke var helt tydelige.
 </details>
 
 
@@ -105,18 +105,24 @@ I denne oppgaven skal vi bli kjent med S3-bøtter!
   S3 står for Simple Storage Service og brukes til å holde data. Tenk på det som en litt fancy delt disk - slik som Google Drive eller Dropbox.
 </details>
 
-1. Først skal vi opprette en bøtte. Bøtter er unike i verden og må ha et helt unikt navn. Brukt derfor en kombinasjon av navnet ditt e.l.
+1. Først skal vi opprette en bøtte. Bøtter er unike i verden og må derfor ha et helt unikt navn. Brukt derfor en kombinasjon av navnet ditt e.l.
 For å opprette en bøtte bruker du kommandoen `aws s3 mb s3://<mitt navn på min bøtte>`.
 
-2. La oss deretter skrive om funksjonen vår i handler.js/handler.py til å liste alle s3-bøttene som eksisterer i regionen vi jobber i på AWS! Et grunnlag for å få til dette finner du [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets). 
+- Dersom du har lyst til å se den nye bøtta du lagde, så kan du søke etter "S3" i søkefeltet hvor du tidligere søkte etter Lambda, og søke etter navnet du gav den under "Buckets".
 
-_OBS_ Hvis du endrer på funksjonsnavnet eller lager en ny funksjon må du vite at en Lambda-function må ta inn parameterne `(event, context)` eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men en lamda-funksjon må ta disse inn for å kjøre (i hvertfall i python).
+2. La oss deretter skrive om funksjonen vår i handler.py til å liste alle s3-bøttene som eksisterer i regionen vi jobber i på AWS! <br />Et grunnlag for å få til dette finner du [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets). 
 
-*Dersom du allerede deployer koden din og tester lambdaen på nett så feiler den - det er meningen. Det skal løses i neste oppgave, men vi skal kjøre lokalt nå først.*
+ℹ️ Endring av funksjonsnavn <br />
+I en lambda, så vil det alltid være en funksjon som tilsvarer det man kaller "main"-funksjon i de fleste språk. Dette er en funksjon som er startpunktet for koden din. Når du kjørte deploy-kommandoen, så ble din main-funksjon satt til å være `hello`. Det betyr at dersom du vil endre dette funksjonsnavnet, så må du også navnet på funksjonen som skal være din main-funksjon. Dette kan gjøres under Lambda -> <din funksjon> -> Runtime Settings. 
 
-3. For å teste koden så kan vi "kjøre" en lambda-funksjon lokalt ved hjelp av en fin liten serverless-kommando. 
-Vi bruker da `serverless invoke local --stage dev --function hello`. 
-`stage` viser til hvilket miljø vi ønsker å gjøre dette i. Under utvikling er det vanlig å ha utviklingsmiljø og produksjonsmiljø. Under workshopen bruker vi `dev` som står for development. `function` viser til funksjonsnavnet ditt i serverless.yml (DOBBELTSJEKK DENNE). 
+ℹ️ En Lambda-function må alltid ta inn parameterne `(event, context)`, eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men lambda-funksjonen din må ta disse inn for å kjøre.
+
+*OBS! Dersom du allerede deployer koden din og tester lambdaen så feiler den - det er meningen. Det er fordi det mangler tilganger. Det skal løses i neste oppgave, men vi skal kjøre lokalt nå først.*
+
+3. For å teste koden så kan vi "kjøre" en lambda-funksjon lokalt ved hjelp av en fin liten serverless-kommando. <br />
+Vi bruker da `serverless invoke local --stage dev --function hello`. <br />
+- `stage` viser til hvilket miljø vi ønsker å gjøre dette i. Under utvikling er det vanlig å ha utviklingsmiljø og produksjonsmiljø. Under workshopen bruker vi `dev` som står for development.
+- `function` viser til funksjonsnavnet ditt i serverless.yml. 
 
 4. Når koden fungerer og du får lista ut alle bøttene, kjør en ny `serverless deploy --stage dev` for å dytte koden din ut.
 
