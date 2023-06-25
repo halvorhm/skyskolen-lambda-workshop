@@ -110,14 +110,14 @@ For å opprette en bøtte bruker du kommandoen `aws s3 mb s3://<mitt navn på mi
 
 - Dersom du har lyst til å se den nye bøtta du lagde, så kan du søke etter "S3" i søkefeltet hvor du tidligere søkte etter Lambda, og søke etter navnet du gav den under "Buckets".
 
-2. La oss deretter skrive om funksjonen vår i handler.py til å liste alle s3-bøttene som eksisterer i regionen vi jobber i på AWS! <br />Et grunnlag for å få til dette finner du [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets). 
+2. La oss deretter skrive om funksjonen vår i handler.py til å liste alle s3-bøttene som eksisterer i regionen vi jobber i på AWS! <br /> Til det skal vi bruke boto3. Et grunnlag for å få til dette finner du [her for python](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html#list-existing-buckets). 
 
 ℹ️ Endring av funksjonsnavn <br />
-I en lambda, så vil det alltid være en funksjon som tilsvarer det man kaller "main"-funksjon i de fleste språk. Dette er en funksjon som er startpunktet for koden din. Når du kjørte deploy-kommandoen, så ble din main-funksjon satt til å være `hello`. Det betyr at dersom du vil endre dette funksjonsnavnet, så må du også navnet på funksjonen som skal være din main-funksjon. Dette kan gjøres under Lambda -> <din funksjon> -> Runtime Settings. 
+I en lambda, så vil det alltid være en funksjon som tilsvarer det man kaller "main"-funksjon i de fleste språk. Dette er en funksjon som er startpunktet for koden din. Når du kjørte deploy-kommandoen, så ble din main-funksjon satt til å være `hello`. Det betyr at dersom du vil endre dette funksjonsnavnet, så må du også navnet på funksjonen som skal være din main-funksjon. Dette kan gjøres i serverless.yml.
 
 ℹ️ En Lambda-function må alltid ta inn parameterne `(event, context)`, eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men lambda-funksjonen din må ta disse inn for å kjøre.
 
-*OBS! Dersom du allerede deployer koden din og tester lambdaen så feiler den - det er meningen. Det er fordi det mangler tilganger. Det skal løses i neste oppgave, men vi skal kjøre lokalt nå først.*
+*OBS! Dersom du allerede deployer koden din og tester lambdaen i aws consollen (i UIet i nettleseren) så feiler den - det er meningen. Det er fordi det mangler tilganger. Det skal løses i neste oppgave, men vi skal kjøre lokalt nå først.*
 
 3. For å teste koden så kan vi "kjøre" en lambda-funksjon lokalt ved hjelp av en fin liten serverless-kommando. <br />
 Vi bruker da `serverless invoke local --stage dev --function hello`. <br />
@@ -136,14 +136,18 @@ For å løse følgende feilmelding ``` ModuleNotFoundError: No module named 'bot
 
 <br>
 
+💡 Hvis du får feilmeldingen `NameError: name 'boto3' is not defined` så kan du sjekke om du har importert boto3 i handler.py-filen din. 
+
+<br>
+
 💡 Har du endret funksjonen din og får nå feilmeldingen: ``` TypeError: printBuckets() takes 0 positional arguments but 2 were given ```? Løsning: funksjonen din må ta inn parameterne `(event, context)` eks: `def hello(event, context)`. Du trenger ikke bruke event eller context i funksjonen din, men en lamda-funksjon må ta disse inn for å kjøre.
 </details>
 
 ## Oppgave 4. 
-Som nevnt har ikke lambda-funksjonen tilgang til å lese s3-bøttene. 
+Som nevnt har ikke lambda-funksjonen tilgang til å lese s3-bøttene. <br>
 Dette kan vi fikse! Og akkurat nå mens vi tester er vi litt frekke og putter på litt ekstra tilganger.
 
-Legg inn biten `iamRoleStatements` i `serverless.yml` fil som vist under. Dette gir lambdaen tilgang tilå gjøre _alle_ s3-kommandoer mot _alle_ s3-bøtter.  
+Legg inn biten `iamRoleStatements` i `serverless.yml` fil som vist under. Dette gir lambdaen tilgang til å gjøre _alle_ s3-kommandoer mot _alle_ s3-bøtter.  
 
 ```yaml
 provider:
@@ -158,10 +162,14 @@ provider:
       Resource:
         - 'arn:aws:s3:::*'
 ```
+
+- `s3:*` under Action: det er her vi gir tillatelse til å gjøre alle (*) handlinger mot s3-bøtter
+- `arn:aws:s3:::*` under Resource: her gir vi tillatelse til å gjøre det mot alle (*) s3-bøtter
+
 Deploy på nytt! Nå burde ting funke!
 
 <details>
-<summary> Hvordan deployer man? </summary>
+<summary> Hvordan deployer man igjen? </summary>
 
 Kjør kommandoen `serverless deploy --stage dev`
 
@@ -172,14 +180,11 @@ Kjør kommandoen `serverless deploy --stage dev`
 Nå prøver vi oss på litt løsere oppgaver, hvor vi må sjekke dokumentasjonen til serverless og sjekke events/triggers. 
 
 Du finner dokumentasjon på hvordan du gjør ting mot s3 i boto3 biblioteket hvis du bruker python. 
-Alle metoder tilgjengelig på boto3 klienten: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#id205
-
-For serverless kan du se lenken under til deres dokumentasjon.
-https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#listObjectsV2-property
+Alle metoder som er tilgjengelig på boto3 klienten: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#id205
 
 <details>
   <summary> Hva er forskjellen på serverless og boto3 ?</summary>
- Boto3 er et python-bibliotek og SDK (Software Development Kit). Ved å bruke boto3, så kan man interagere med forskjellige ressurser (f.eks. en lambda) i AWS gjennom kode.  Enkelt forklart er så er bruken til serverless å kunne deploye denne koden enkelt til AWS, og å abstrahere bort en del underliggende infrastruktur. De har noen overlappende bruksområder (for eksempel kan begge brukes til å opprette en s3-bøtte), men fokusområdene er forskjellige.
+ Boto3 er et python-bibliotek og SDK (Software Development Kit). Ved å bruke boto3, så kan man interagere med forskjellige ressurser (f.eks. en lambda) i AWS gjennom kode.  Enkelt forklart er så er bruken til serverless å kunne deploye denne koden enkelt til AWS, og å abstrahere bort en del underliggende infrastruktur. De har noen overlappende bruksområder (for eksempel kan begge brukes til å opprette en s3-bøtte), men fokus- og bruksområdene er forskjellige.
 </details>
 
 ### Oppgave 5.0
@@ -188,10 +193,10 @@ Start med å laste opp noe i bøtta di som du lagde i oppgave 3! Kanskje et bild
 Dette kan du gjøre ved hjelp av ClickOps eller ved hjelp av en kommando i terminalen. 
 
 Dersom du vil gjøre det i terminalen, så kan dette være en nyttig lenke: https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
-PS! Bla ned til avsnittet med tittelen "Example" 
+Tips: bla ned til avsnittet med tittelen "Example". 
 
 ### Oppgave 5.1
-List innholdet i bøtten din! Bruk det vi gjorde i oppgave 3 (og lenkene der) som utgangspunkt og modifiser funksjonen din ved hjelp av dokumentasjonen. 
+List ut innholdet i bøtten din! Bruk det vi gjorde i oppgave 3 (og lenkene der) som utgangspunkt og modifiser funksjonen din ved hjelp av dokumentasjonen. 
 
 Nyttig lenke:
 https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_objects_v2
