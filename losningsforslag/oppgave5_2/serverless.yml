@@ -14,7 +14,10 @@ provider:
         - 'arn:aws:s3:::*'
 
 functions:
-  printBuckets:
-    handler: handler.printBuckets
+  triggerOnAddData:
+    handler: handler.triggerOnAddData
     events: 
-      - schedule: rate(1 minute)
+      - s3: 'testing-trigger-on-add-data-bucket'
+  addData:
+    handler: handler.addData
+  
