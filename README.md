@@ -195,6 +195,12 @@ Dette kan du gjøre ved hjelp av ClickOps eller ved hjelp av en kommando i termi
 Dersom du vil gjøre det i terminalen, så kan dette være en nyttig lenke: https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
 Tips: bla ned til avsnittet med tittelen "Example". 
 
+<details>
+<summary> <h3>🚨 Troubleshooting 🚨</h3></summary>
+Får du feilmeldingen `The user-provided path jobapplication.json does not exist.`?
+Husk at pathen til fila di må stemme. Står du i riktig mappe?
+</details>
+
 ### Oppgave 5.1
 List ut innholdet i bøtten din! Bruk det vi gjorde i oppgave 3 (og lenkene der) som utgangspunkt og modifiser funksjonen din ved hjelp av dokumentasjonen. 
 
