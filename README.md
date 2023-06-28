@@ -2,7 +2,7 @@
 
 ### Lambda!
 Her skal vi leke oss litt med lambda, et ypperlig Function As A Service (FaaS) miljø vi kan bruke til å kjøre koden vår.
-Vi kommer også til å ta i bruk et rammeverk som heter serverless. Dette rammeverket skal hjelpe oss med å deploye og håndtere av prosjektet og koden vår.
+Vi kommer også til å ta i bruk et rammeverk som heter serverless. Dette rammeverket skal hjelpe oss med å deploye og håndtere prosjektet og koden vår.
 
 <details>
   <summary>Hva var lambda igjen? 🤔</summary>
@@ -214,6 +214,8 @@ Nyttig lenke:
 https://www.serverless.com/framework/docs/providers/aws/events/s3
 
 ### Oppgave 5.3 
-Legg til noe om kron jobb??
+Lag en cron-trigger så lambdaen kjører hvert minutt. Test det!
+
+Nyttig lenke: https://www.serverless.com/blog/cron-jobs-on-aws
 
 
